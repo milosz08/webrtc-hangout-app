@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 import { useCallback, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router';

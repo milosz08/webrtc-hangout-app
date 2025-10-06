@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { generateDefaultNickname } from '../utils/nicknameUtils';

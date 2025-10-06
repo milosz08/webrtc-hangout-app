@@ -1,8 +1,5 @@
 'use strict';
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
+
 const config = require('../config');
 const axios = require('axios');
 const logger = require('../logger');

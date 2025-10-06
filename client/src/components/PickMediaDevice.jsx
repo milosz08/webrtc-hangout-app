@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 import { useEffect } from 'react';
 import equal from 'array-equal';
 import { Checkbox, Dropdown, Label } from 'flowbite-react';

@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 import clsx from 'clsx';
 import { MdNightlightRound, MdOutlineWbSunny } from 'react-icons/md';
 import useDarkMode from '../hooks/useDarkMode';

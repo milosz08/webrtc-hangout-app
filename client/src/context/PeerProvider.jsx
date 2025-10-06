@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 import { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';

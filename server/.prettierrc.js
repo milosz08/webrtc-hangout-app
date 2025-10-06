@@ -1,8 +1,5 @@
 'use strict';
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
+
 module.exports = {
   tabWidth: 2,
   printWidth: 80,

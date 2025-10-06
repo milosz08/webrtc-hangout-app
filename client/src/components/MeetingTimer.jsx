@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 import { useCallback, useEffect, useState } from 'react';
 import convert from 'convert-seconds';
 import { useSnackbar } from 'notistack';

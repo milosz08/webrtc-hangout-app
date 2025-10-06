@@ -1,8 +1,5 @@
 'use strict';
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
+
 const { rooms } = require('../state');
 const { io } = require('../socket');
 const logger = require('../logger');

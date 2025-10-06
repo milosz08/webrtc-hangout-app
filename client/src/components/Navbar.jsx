@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';

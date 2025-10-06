@@ -1,8 +1,5 @@
 'use strict';
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
+
 const logger = require('./logger');
 const config = require('./config');
 const { io, httpServer, expressServer } = require('./socket');

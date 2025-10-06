@@ -1,8 +1,4 @@
 'use strict';
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 
 // eslint-disable-next-line no-undef
 module.exports = {

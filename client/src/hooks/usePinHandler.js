@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
 import { createRef, useEffect, useState } from 'react';
 import { codeInputFieldRegex } from '../utils/const';
 
