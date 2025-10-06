@@ -1,8 +1,5 @@
 'use strict';
-/*
- * Part of Silesian University of Technology project.
- * Created only for learning purposes.
- */
+
 const dotenv = require('dotenv');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
