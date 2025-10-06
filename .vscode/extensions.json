@@ -1,8 +1,0 @@
-{
-  "recommendations": [
-    "dbaeumer.vscode-eslint",
-    "oderwat.indent-rainbow",
-    "psioniq.psi-header",
-    "alduncanson.react-hooks-snippets"
-  ]
-}
