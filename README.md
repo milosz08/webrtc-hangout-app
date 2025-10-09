@@ -1,77 +1,119 @@
-<!-- omit in toc -->
-# WebRTC Hangouts App
+# WebRTC Hangout App
 
-Client (demo): [webrtc.miloszgilga.pl](https://webrtc.miloszgilga.pl) <br>
-Server (demo): [api.webrtc.miloszgilga.pl](https://api.webrtc.miloszgilga.pl) <br>
-Trello board: [https://trello.com/b/vOwic0HM/siim-projekt](https://trello.com/b/vOwic0HM/siim-projekt)
+[[Docker image](https://hub.docker.com/r/milosz08/webrtc-hangout-app)] |
+[[About project](https://miloszgilga.pl/project/webrtc-hangout-app)] |
+[[Trello board](https://trello.com/b/vOwic0HM/siim-projekt)]
+
+A simple video hangout app built with WebRTC for P2P connections. It uses a signaling server based on Express and
+Socket.io to establish calls.
+
+This application allows users to join video rooms with their microphone and camera enabled. Each room also features an
+integrated text chat for participants without audio/video hardware or for those who prefer to type. By implementing the
+ICE protocol with STUN and TURN servers, the app can effectively bypass NAT and firewall issues, ensuring reliable
+connections between users (see diagram below).
+
+Below you can find infrastructure diagram (with STUN/TURN servers and signaling servers):
+
+![](.github/flow-diagram.svg)
 
 ## Table of content
 
-- [Table of content](#table-of-content)
-- [Requirements](#requirements)
-- [Clone and install](#clone-and-install)
-- [Setting linter](#setting-linter)
-- [Code continuity](#code-continuity)
+* [Clone and run](#clone-and-run)
+* [Prepare development environment](#prepare-development-environment)
+* [Tech stack](#tech-stack)
+* [Author](#author)
+* [License](#license)
 
-<a name="requirements"></a>
+## Clone and run
 
-## Requirements
+1. Clone repository on your local machine via:
 
-- node v20.X (check version via `node -v`, for multiple versions use nvm [info](https://github.com/nvm-sh/nvm/blob/master/README.md))
-- npm v10.X
-- Visual Studio Code
-
-<a name="clone-and-install"></a>
-
-## Clone and install
-
-1. Clone monorepo via:
 ```bash
-$ git clone https://github.com/milosz08/webrtc-hangouts-app.git
+$ git clone https://github.com/milosz08/webrtc-hangout-app
 ```
 
-2. After downloaded, open in Visual Studio Code and install extensions from settings.json file.
+2. Create `.env` file and fill up environment variables based on `example.env` file:
 
-3. If you don't have yet yarn, install via:
-```bash
-$ npm i -g yarn
+```properties
+VH_VITE_SERVER_PORT=6061
+VH_SIGNAL_SERVER_PORT=6062
+VH_PEER_SERVER_PORT=6063
+VH_APP_SERVER_PORT=6064
+#
+VH_PEER_SERVER_HOST=localhost
+VH_PEER_SERVER_KEY=<peer server key>
+VH_STUN_SERVER_DOMAIN=<stun/turn server domain, ex. stun.miloszgilga.pl>
+VH_STUN_SERVER_KEY=<stun/turn server key>
+VH_ICE_EXPIRATION_MINUTES=<session expiration minutes>
 ```
 
-4. Go to root project directory and install all dependencies via:
+> [!TIP]
+> For quick application testing, you can use the managed ICE servers from a service like 
+> [Metered](https://dashboard.metered.ca). For advanced use cases, consider deploying your own open-source
+> [coturn](https://github.com/coturn/coturn) server on a cloud instance, such as AWS EC2 or Oracle OCI, ensuring it has
+> a static public IP address.
+
+3. Run combined app (frontend with signaling server) and Peer server via:
+
 ```bash
-$ yarn install
+$ docker compose up -d
 ```
 
-5. Run client and server via:
+By default, applications will be listening at:
+
+| Name        | Port | Link                                    |
+|-------------|------|-----------------------------------------|
+| peer-server | 6063 | [localhost:6063](http://localhost:6063) |
+| app         | 6064 | [localhost:6064](http://localhost:6064) |
+
+## Prepare development environment
+
+1. Clone and create `.env` file.
+2. Run Peer server via docker:
+
 ```bash
-$ yarn run dev:all
+$ docker compose up -d video-hangout-peerjs
 ```
-Client local url: [http://localhost:6061](http://localhost:6061) <br>
-Server local url: [http://localhost:6062](http://localhost:6062)
 
-6. Or run separately via:
+3. Install all dependencies via:
+
 ```bash
-$ yarn run dev:<module>
+$ yarn install --frozen-lockfile
 ```
-where `<module>` is `client` or `server`.
 
-## Setting linter
-1. In Visual Studio Code press Ctrl+Shift+P and type `Restart ESLint server`.
-2. Then, press Ctrl+J and open output -> Eslint. If you have any errors after invoke ESlint daemon,
-   try reload window (Ctrl+Shift+P, type `Reload window`) or rerun entire Visual Studio Code app.
-3. Once ESlint server is running, toggle default formatter to Right Click -> Format Document With -> Configure
-   default formatted and choose ESlint (in any .js file).
+> [!TIP]
+> If you don't have yarn yet, install via: `npm i -g yarn`.
 
-## Code continuity
+4. Run client and signal-server via:
 
-1. Husky will prevent you for pushing code with errors (protip: if `git commit` command throw exception,
-   check error log).
-2. Default `master` branch is locked and protected (any push at this branch invoking CI/CD
-   build pipeline for client and server), so you cannot push commits directly at this branch.
-3. For any task from board, you should create separated branch:
 ```bash
-git checkout -b <branchname>
+$ yarn run dev:client
+$ yarn run dev:signal-server
 ```
-1. Once the task is completed, mark pull request as "ready to review" via Github UI.
-2. When task is done and reviewed, I will merge with `master` branch. Provided changes will be automatically
-   deployed to server.
+
+By default, applications will be listening at:
+
+| Name          | Port | Link                                    |
+|---------------|------|-----------------------------------------|
+| client        | 6061 | [localhost:6061](http://localhost:6061) |
+| signal-server | 6062 | [localhost:6062](http://localhost:6062) |
+| peer-server   | 6063 | [localhost:6063](http://localhost:6063) |
+
+## Tech stack
+
+* Node.js,
+* Express,
+* Socket.io,
+* PeerJS,
+* WebRTC,
+* React 18, React router 6,
+* Tailwind (flowbite), notistack.
+
+## Author
+
+Created by Miłosz Gilga. If you have any questions about this application, send
+message: [miloszgilga@gmail.com](mailto:miloszgilga@gmail.com).
+
+## License
+
+This project is licensed under the Apache 2.0 License.
