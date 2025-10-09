@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --watch --progress",
-    "build": "cross-env NODE_ENV=production npx webpack --progress",
-    "lint": "npx eslint --ext js,cjs,mjs --report-unused-disable-directives --max-warnings 0"
+    "build": "cross-env NODE_ENV=production webpack --progress",
+    "lint": "eslint --ext js,cjs,mjs --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "axios": "^1.12.2",

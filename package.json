@@ -4,14 +4,16 @@
   "private": true,
   "workspaces": [
     "client",
-    "server"
+    "signal-server"
   ],
   "scripts": {
     "dev:client": "cd client && yarn run dev",
-    "dev:server": "cd server && yarn run dev",
+    "dev:signal-server": "cd signal-server && yarn run dev",
+    "build:client": "cd client && yarn run build",
+    "build:signal-server": "cd signal-server && yarn run build",
+    "build:app": "yarn run build:signal-server && yarn run build:client",
     "lint:client": "cd client && yarn run lint",
-    "lint:server": "cd server && yarn run lint",
-    "dev:all": "concurrently \"yarn run dev:client\" \"yarn run dev:server\"",
+    "lint:signal-server": "cd signal-server && yarn run lint",
     "husky:add-pre-commit": "npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
     "configure:husky": "npx husky install && yarn run husky:add-pre-commit"
   },
@@ -43,5 +45,6 @@
     "cross-spawn": "^7.0.5",
     "path-to-regexp": "^0.1.12",
     "nanoid": "^3.3.8"
-  }
+  },
+  "dependencies": {}
 }

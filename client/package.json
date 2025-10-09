@@ -4,10 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 6061",
-    "build": "npx vite build",
-    "lint": "npx eslint . --ext js,jsx,cjs,mjs --report-unused-disable-directives --max-warnings 0",
-    "preview": "npx vite preview --port 6061"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx,cjs,mjs --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "array-equal": "^1.0.2",

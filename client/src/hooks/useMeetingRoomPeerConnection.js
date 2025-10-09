@@ -67,7 +67,7 @@ const useMeetingRoomPeerConnection = ({ setCameras }) => {
 
   const onNewPeerConnection = useCallback(
     ({ peerId }) => {
-      if (peerId != peer.id && !peers[peerId]) {
+      if (peerId !== peer.id && !peers[peerId]) {
         const call = peer.call(peerId, localStream);
         call.on('stream', userVideoStream => {
           setVideoStream(userVideoStream, peerId);
@@ -168,7 +168,7 @@ const useMeetingRoomPeerConnection = ({ setCameras }) => {
       });
       setLocalStream(stream);
     };
-    grabVideoStream();
+    grabVideoStream().then(r => r);
     return () => {
       localStream?.getTracks().forEach(track => track?.stop());
       Object.values(streams).forEach(stream =>
