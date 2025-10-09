@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require('path');
+const express = require('express');
 const logger = require('./logger');
 const config = require('./config');
 const { io, httpServer, expressServer } = require('./socket');
@@ -19,9 +21,9 @@ const {
   peerAudioToggle,
 } = require('./room/peer');
 
-const { handleGetIceServers } = require('./ice/servers');
+const { handleGetPeerServerConnectionDetails } = require('./peer/details');
 
-const PORT = config.PORT;
+const PORT = config.SIGNAL_SERVER_PORT;
 
 io.on('connection', socket => {
   // invoke on user join room (determinate host or regular user)
@@ -50,7 +52,15 @@ io.on('connection', socket => {
   socket.on('peer:audio-toggle', peerAudioToggle);
 });
 
-expressServer.get('/api/v1/ice', handleGetIceServers);
+expressServer.get('/api/v1/peer', handleGetPeerServerConnectionDetails);
+
+if (process.env.NODE_ENV === 'production') {
+  const clientBuildPath = path.resolve(__dirname, './client');
+  expressServer.use(express.static(clientBuildPath));
+  expressServer.get('*', (req, res) => {
+    res.sendFile(path.resolve(clientBuildPath, 'index.html'));
+  });
+}
 
 httpServer.listen(PORT, () => {
   logger.info(`Server started at port: ${PORT}`);

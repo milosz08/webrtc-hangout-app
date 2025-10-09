@@ -1,0 +1,13 @@
+.github
+.husky
+.run
+node_modules
+dist
+
+.dockerignore
+.env
+.gitignore
+docker-compose.yml
+Dockerfile
+example.env
+README.md

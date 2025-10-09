@@ -6,12 +6,19 @@ const nodeExternals = require('webpack-node-externals');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 function isProduction() {
   return process.env.NODE_ENV === 'production';
 }
+
+const outputDir = [__dirname];
+if (isProduction()) {
+  outputDir.push('..');
+}
+outputDir.push('dist');
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -21,7 +28,7 @@ module.exports = {
     warnings: false,
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(...outputDir),
     filename: 'index.js',
     clean: isProduction(),
     publicPath: '/',
@@ -34,6 +41,13 @@ module.exports = {
   plugins: [
     { plugin: new RemoveEmptyScriptsPlugin() },
     { prod: false, plugin: new NodemonPlugin() },
+    {
+      plugin: new DefinePlugin({
+        'process.env.ENV_PATH': JSON.stringify(
+          isProduction() ? '.env' : '../.env'
+        ),
+      }),
+    },
   ]
     .filter(details => (isProduction() ? details.prod : true))
     .map(({ plugin }) => plugin),

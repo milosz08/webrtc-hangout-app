@@ -18,42 +18,26 @@ const PeerProvider = ({ children }) => {
   const [peer, setPeer] = useState(null);
 
   const createPeerConnection = (afterConnectCallback, afterError) => {
-    const url = new URL(window.reactEnvClient.peerServerUrl);
-    let config = { host: url.hostname, secure: true };
-    if (url.port) {
-      config = { host: 'localhost', port: url.port };
-    }
-    fetchIceServers().then(iceServers => {
-      if (iceServers.length > 0) {
-        const peer = new Peer(undefined, {
-          ...config,
-          path: '/peerjs',
-          config: {
-            iceServers,
-          },
-        });
+    fetchPeerServerConnectionDetails().then(connDetails => {
+      if (!connDetails || connDetails.config.iceServers.length === 0) {
+        afterError();
+      } else {
+        const peer = new Peer(undefined, connDetails);
         peer.on('open', id => {
           afterConnectCallback(id);
           setPeer(peer);
         });
-      } else {
-        afterError();
       }
     });
   };
 
-  const fetchIceServers = async () => {
+  const fetchPeerServerConnectionDetails = async () => {
     try {
-      const { data } = await axios.get(
-        `${window.reactEnvClient.serverUrl}/api/v1/ice`
-      );
-      if (data.length === 0) {
-        enqueueSnackbar('Unable to fetch connection details');
-      }
+      const { data } = await axios.get('/api/v1/peer');
       return data;
     } catch (error) {
       enqueueSnackbar('Unable to fetch connection details');
-      return [];
+      return null;
     }
   };
 

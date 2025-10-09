@@ -1,12 +1,14 @@
-node_modules/
-client/node_modules/
-server/node_modules/
+node_modules
+client/node_modules
+peer-server/node_modules
+signal-server/node_modules
 
-client/dist/
-server/dist/
-server/.env
-server/logs/
+dist
+peer-server/logs
+peer-server/dist
+signal-server/logs
+signal-server/dist
 
-.idea/
+.idea
 .DS_Store
-
+.env
