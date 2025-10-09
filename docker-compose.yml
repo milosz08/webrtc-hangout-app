@@ -1,7 +1,7 @@
 services:
-  video-hangouts-peerjs:
+  video-hangout-peerjs:
     image: peerjs/peerjs-server:latest
-    container_name: video-hangouts-peerjs
+    container_name: video-hangout-peerjs
     ports:
       - "${VH_PEER_SERVER_PORT}:9000"
     command:
@@ -10,13 +10,13 @@ services:
       - --key
       - ${VH_PEER_SERVER_KEY}
     networks:
-      - video-hangouts-network
+      - video-hangout-network
 
-  video-hangouts-app:
+  video-hangout-app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: video-hangouts-app
+    container_name: video-hangout-app
     ports:
       - "${VH_APP_SERVER_PORT}:3000"
     environment:
@@ -30,8 +30,8 @@ services:
       VH_STUN_SERVER_KEY: ${VH_STUN_SERVER_KEY}
       VH_ICE_EXPIRATION_MINUTES: ${VH_ICE_EXPIRATION_MINUTES}
     networks:
-      - video-hangouts-network
+      - video-hangout-network
 
 networks:
-  video-hangouts-network:
+  video-hangout-network:
     driver: bridge
