@@ -22,7 +22,7 @@
       "yarn run lint:client"
     ],
     "server/src/**/*.{js,cjs,mjs}": [
-      "yarn run lint:server"
+      "yarn run lint:signal-server"
     ]
   },
   "husky": {
