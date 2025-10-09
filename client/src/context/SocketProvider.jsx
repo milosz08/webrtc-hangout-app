@@ -11,11 +11,7 @@ export const useSocket = () => {
 };
 
 const SocketProvider = ({ children }) => {
-  const socket = useMemo(
-    () =>
-      io(window.reactEnvClient.signalServerUrl, { transports: ['websocket'] }),
-    []
-  );
+  const socket = useMemo(() => io({ transports: ['websocket'] }), []);
   return (
     <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
   );
