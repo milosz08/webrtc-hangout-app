@@ -1,7 +1,7 @@
 services:
-  video-hangout-peerjs:
+  webrtc-hangout-peerjs:
     image: peerjs/peerjs-server:latest
-    container_name: video-hangout-peerjs
+    container_name: webrtc-hangout-peerjs
     ports:
       - "${VH_PEER_SERVER_PORT}:9000"
     command:
@@ -10,13 +10,13 @@ services:
       - --key
       - ${VH_PEER_SERVER_KEY}
     networks:
-      - video-hangout-network
+      - webrtc-hangout-network
 
-  video-hangout-app:
+  webrtc-hangout-app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: video-hangout-app
+    container_name: webrtc-hangout-app
     ports:
       - "${VH_APP_SERVER_PORT}:3000"
     environment:
@@ -30,8 +30,8 @@ services:
       VH_STUN_SERVER_KEY: ${VH_STUN_SERVER_KEY}
       VH_ICE_EXPIRATION_MINUTES: ${VH_ICE_EXPIRATION_MINUTES}
     networks:
-      - video-hangout-network
+      - webrtc-hangout-network
 
 networks:
-  video-hangout-network:
+  webrtc-hangout-network:
     driver: bridge
