@@ -3,12 +3,12 @@ services:
     image: peerjs/peerjs-server:latest
     container_name: webrtc-hangout-peerjs
     ports:
-      - "${VH_PEER_SERVER_PORT}:9000"
+      - "${WHA_PEER_SERVER_PORT}:9000"
     command:
       - --path
       - /peerjs
       - --key
-      - ${VH_PEER_SERVER_KEY}
+      - ${WHA_PEER_SERVER_KEY}
     networks:
       - webrtc-hangout-network
 
@@ -18,17 +18,17 @@ services:
       dockerfile: Dockerfile
     container_name: webrtc-hangout-app
     ports:
-      - "${VH_APP_SERVER_PORT}:3000"
+      - "${WHA_APP_SERVER_PORT}:3000"
     environment:
-      VH_APP_SERVER_PORT: 3000
+      WHA_APP_SERVER_PORT: 3000
       # peer server
-      VH_PEER_SERVER_HOST: ${VH_PEER_SERVER_HOST}
-      VH_PEER_SERVER_PORT: ${VH_PEER_SERVER_PORT}
-      VH_PEER_SERVER_KEY: ${VH_PEER_SERVER_KEY}
+      WHA_PEER_SERVER_HOST: ${WHA_PEER_SERVER_HOST}
+      WHA_PEER_SERVER_PORT: ${WHA_PEER_SERVER_PORT}
+      WHA_PEER_SERVER_KEY: ${WHA_PEER_SERVER_KEY}
       # stun/turn servers (with ICEs)
-      VH_STUN_SERVER_DOMAIN: ${VH_STUN_SERVER_DOMAIN}
-      VH_STUN_SERVER_KEY: ${VH_STUN_SERVER_KEY}
-      VH_ICE_EXPIRATION_MINUTES: ${VH_ICE_EXPIRATION_MINUTES}
+      WHA_STUN_SERVER_DOMAIN: ${WHA_STUN_SERVER_DOMAIN}
+      WHA_STUN_SERVER_KEY: ${WHA_STUN_SERVER_KEY}
+      WHA_ICE_EXPIRATION_MINUTES: ${WHA_ICE_EXPIRATION_MINUTES}
     networks:
       - webrtc-hangout-network
 

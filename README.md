@@ -35,16 +35,16 @@ $ git clone https://github.com/milosz08/webrtc-hangout-app
 2. Create `.env` file and fill up environment variables based on `example.env` file:
 
 ```properties
-VH_VITE_SERVER_PORT=6061
-VH_SIGNAL_SERVER_PORT=6062
-VH_PEER_SERVER_PORT=6063
-VH_APP_SERVER_PORT=6064
+WHA_VITE_SERVER_PORT=6061
+WHA_SIGNAL_SERVER_PORT=6062
+WHA_PEER_SERVER_PORT=6063
+WHA_APP_SERVER_PORT=6064
 #
-VH_PEER_SERVER_HOST=localhost
-VH_PEER_SERVER_KEY=<peer server key>
-VH_STUN_SERVER_DOMAIN=<stun/turn server domain, ex. stun.miloszgilga.pl>
-VH_STUN_SERVER_KEY=<stun/turn server key>
-VH_ICE_EXPIRATION_MINUTES=<session expiration minutes>
+WHA_PEER_SERVER_HOST=localhost
+WHA_PEER_SERVER_KEY=<peer server key>
+WHA_STUN_SERVER_DOMAIN=<stun/turn server domain, ex. stun.miloszgilga.pl>
+WHA_STUN_SERVER_KEY=<stun/turn server key>
+WHA_ICE_EXPIRATION_MINUTES=<session expiration minutes>
 ```
 
 > [!TIP]

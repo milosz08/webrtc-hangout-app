@@ -20,13 +20,13 @@ docker build -t milosz08/webrtc-hangout-app .
 docker run -d \
   --name webrtc-hangout-app \
   -p 6064:3000 \
-  -e VH_APP_SERVER_PORT=3000 \
-  -e VH_PEER_SERVER_HOST=<peer server host> \
-  -e VH_PEER_SERVER_PORT=<peer server port, by default 443> \
-  -e VH_PEER_SERVER_KEY=<peer server key> \
-  -e VH_STUN_SERVER_DOMAIN=<STUN server domain> \
-  -e VH_STUN_SERVER_KEY=<STUN server key> \
-  -e VH_ICE_EXPIRATION_MINUTES=<session expiration minutes> \
+  -e WHA_APP_SERVER_PORT=3000 \
+  -e WHA_PEER_SERVER_HOST=<peer server host> \
+  -e WHA_PEER_SERVER_PORT=<peer server port, by default 443> \
+  -e WHA_PEER_SERVER_KEY=<peer server key> \
+  -e WHA_STUN_SERVER_DOMAIN=<STUN server domain> \
+  -e WHA_STUN_SERVER_KEY=<STUN server key> \
+  -e WHA_ICE_EXPIRATION_MINUTES=<session expiration minutes> \
   milosz08/webrtc-hangout-app:latest
 ```
 
@@ -40,15 +40,15 @@ services:
     ports:
       - '6064:3000'
     environment:
-      VH_APP_SERVER_PORT: 3000
+      WHA_APP_SERVER_PORT: 3000
       # peer server
-      VH_PEER_SERVER_HOST: <peer server host>
-      VH_PEER_SERVER_PORT: <peer server port, by default 443>
-      VH_PEER_SERVER_KEY: <peer server key>
+      WHA_PEER_SERVER_HOST: <peer server host>
+      WHA_PEER_SERVER_PORT: <peer server port, by default 443>
+      WHA_PEER_SERVER_KEY: <peer server key>
       # stun/turn servers (with ICEs)
-      VH_STUN_SERVER_DOMAIN: <STUN server domain>
-      VH_STUN_SERVER_KEY: <STUN server key>
-      VH_ICE_EXPIRATION_MINUTES: <session expiration minutes>
+      WHA_STUN_SERVER_DOMAIN: <STUN server domain>
+      WHA_STUN_SERVER_KEY: <STUN server key>
+      WHA_ICE_EXPIRATION_MINUTES: <session expiration minutes>
     networks:
       - webrtc-hangout-app-network
 

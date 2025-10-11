@@ -13,14 +13,14 @@ export default defineConfig(({ mode }) => {
       outDir: '../dist/client',
     },
     server: {
-      port: Number(env.VH_VITE_SERVER_PORT),
+      port: Number(env.WHA_VITE_SERVER_PORT),
       proxy: {
         '/api': {
-          target: `http://localhost:${env.VH_SIGNAL_SERVER_PORT}`,
+          target: `http://localhost:${env.WHA_SIGNAL_SERVER_PORT}`,
           changeOrigin: true,
         },
         '/socket.io': {
-          target: `http://localhost:${env.VH_SIGNAL_SERVER_PORT}`,
+          target: `http://localhost:${env.WHA_SIGNAL_SERVER_PORT}`,
           ws: true,
         },
       },
