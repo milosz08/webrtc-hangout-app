@@ -20,4 +20,6 @@ COPY --from=builder /usr/src/app/dist/ ./
 
 ENV NODE_ENV=production
 
+LABEL maintainer="Miłosz Gilga <miloszgilga@gmail.com>"
+
 CMD ["node", "index.js"]
