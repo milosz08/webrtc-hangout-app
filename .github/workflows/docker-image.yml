@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - ".github/workflows/docker.yml"
+      - ".github/workflows/docker-image.yml"
       - "client/**"
       - "signal-server/**"
       - ".dockerignore"
@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: yarn run build:app
 
-      - name: Upload generated JAR artifact
+      - name: Upload generated artifact files
         uses: actions/upload-artifact@v4
         with:
           name: output-dist
@@ -50,7 +50,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download generated JAR artifact
+      - name: Download generated artifact files
         uses: actions/download-artifact@v4
         with:
           name: output-dist
