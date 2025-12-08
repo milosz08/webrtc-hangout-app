@@ -45,6 +45,7 @@ WHA_PEER_SERVER_KEY=<peer server key>
 WHA_STUN_SERVER_DOMAIN=<stun/turn server domain, ex. stun.miloszgilga.pl>
 WHA_STUN_SERVER_KEY=<stun/turn server key>
 WHA_ICE_EXPIRATION_MINUTES=<session expiration minutes>
+WHA_LOGGING_TO_FILE=<true/false, set false for dockerized application>
 ```
 
 > [!TIP]

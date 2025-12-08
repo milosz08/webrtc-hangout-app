@@ -29,6 +29,7 @@ services:
       WHA_STUN_SERVER_DOMAIN: ${WHA_STUN_SERVER_DOMAIN}
       WHA_STUN_SERVER_KEY: ${WHA_STUN_SERVER_KEY}
       WHA_ICE_EXPIRATION_MINUTES: ${WHA_ICE_EXPIRATION_MINUTES}
+      WHA_LOGGING_TO_FILE: false
     networks:
       - webrtc-hangout-network
 

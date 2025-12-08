@@ -2,6 +2,7 @@
 
 const path = require('path');
 const winston = require('winston');
+const { LOGGING_TO_FILE } = require('./config');
 
 const { format, transports } = winston;
 const LOGS_PATH = 'logs';
@@ -22,12 +23,16 @@ module.exports = winston.createLogger({
   ),
   transports: [
     new transports.Console(),
-    new transports.File({
-      filename: path.resolve(__dirname, LOGS_PATH, 'error.log'),
-      level: 'error',
-    }),
-    new transports.File({
-      filename: path.resolve(__dirname, LOGS_PATH, 'all.log'),
-    }),
+    ...(LOGGING_TO_FILE
+      ? [
+          new transports.File({
+            filename: path.resolve(__dirname, LOGS_PATH, 'error.log'),
+            level: 'error',
+          }),
+          new transports.File({
+            filename: path.resolve(__dirname, LOGS_PATH, 'all.log'),
+          }),
+        ]
+      : []),
   ],
 });

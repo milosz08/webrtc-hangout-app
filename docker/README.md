@@ -27,6 +27,7 @@ docker run -d \
   -e WHA_STUN_SERVER_DOMAIN=<STUN server domain> \
   -e WHA_STUN_SERVER_KEY=<STUN server key> \
   -e WHA_ICE_EXPIRATION_MINUTES=<session expiration minutes> \
+  -e WHA_LOGGING_TO_FILE=false \
   milosz08/webrtc-hangout-app:latest
 ```
 
@@ -49,6 +50,7 @@ services:
       WHA_STUN_SERVER_DOMAIN: <STUN server domain>
       WHA_STUN_SERVER_KEY: <STUN server key>
       WHA_ICE_EXPIRATION_MINUTES: <session expiration minutes>
+      WHA_LOGGING_TO_FILE: false
     networks:
       - webrtc-hangout-app-network
 

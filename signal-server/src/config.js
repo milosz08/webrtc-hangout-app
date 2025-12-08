@@ -12,4 +12,5 @@ module.exports = {
   STUN_SERVER_DOMAIN: process.env.WHA_STUN_SERVER_DOMAIN,
   STUN_SERVER_KEY: process.env.WHA_STUN_SERVER_KEY,
   ICE_EXPIRATION_MINUTES: process.env.WHA_ICE_EXPIRATION_MINUTES,
+  LOGGING_TO_FILE: process.env.WHA_LOGGING_TO_FILE === 'true',
 };
