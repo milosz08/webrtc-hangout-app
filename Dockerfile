@@ -16,10 +16,12 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY --from=builder /usr/src/app/dist/ ./
+COPY --chown=node:node --from=builder /usr/src/app/dist/ ./
 
 ENV NODE_ENV=production
 
 LABEL maintainer="Miłosz Gilga <miloszgilga@gmail.com>"
+
+USER node
 
 CMD ["node", "index.js"]
