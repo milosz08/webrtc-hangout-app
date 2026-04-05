@@ -14,7 +14,7 @@ connections between users (see diagram below).
 
 Below you can find infrastructure diagram (with STUN/TURN servers and signaling servers):
 
-![](.github/flow-diagram.svg)
+<img src=".github/flow-diagram.svg" width="100%">
 
 ## Table of content
 
